@@ -11,12 +11,12 @@
 <body>
     <section class="">
         <div class="tarjeta">
-            <h5>Tarjeta {{ informacion.tipo }} {{ informacion.tarjeta }}</h5>
-            <h1>$ {{ informacion.saldo }}</h1>
+            <h5>Tarjeta {{ informacion.tarjeta.tipo }} {{ informacion.tarjeta.numero }}</h5>
+            <h1>$ {{ informacion.tarjeta.saldo }}</h1>
         </div>
         <div class="lineas">
             {% for linea in informacion.lineas %}
-            <div class=""><h2 class="linea">{{ linea|upper }}</h2></div>
+            <div><h2 class="linea" style="--linea: {{ linea.color }};">{{ linea.nombre|upper }}</h2></div>
             {% endfor %}
         </div>
         <div class="micros">
