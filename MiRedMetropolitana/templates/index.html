@@ -21,7 +21,7 @@
         </div>
         <div class="micros">
             {% for micro in informacion.micros %}
-            <div class="row micro" style="--micro: {% if forloop.counter0 == 0 %}#39974b{% elif forloop.last %}#6f000082{% else %}#485100{% endif %};--opacity: {% if forloop.counter0 == 0 %}1{% elif forloop.last %}0.6{% else %}0.8{% endif %};">
+            <div class="row micro" style="--micro: {% if forloop.counter0 == 0 %}#39974b{% elif forloop.counter0 == 1 %}#000000{% else %}#ffffff{% endif %};--opacity: {% if forloop.counter0 == 0 %}1{% elif forloop.last %}0.6{% else %}0.8{% endif %};">
                 <div class="col-md-4 servicio">{{ micro.servicio }}</div>
                 <div class="col-md-4 patente">{{ micro.patente }}</div>
                 <div class="col-md-4 llegada">{{ micro.llegada }}</div>
