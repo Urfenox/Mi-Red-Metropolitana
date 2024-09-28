@@ -1,0 +1,13 @@
+
+.tarjeta {
+    padding: 10px;
+}
+
+.tarjeta h1 {
+    color: #d3d1d3;
+    font-size: 55px;
+}
+.tarjeta h5 {
+    color: #32363c;
+    font-size: 20px;
+}

@@ -1,0 +1,23 @@
+
+.micros {
+    padding: 10px;
+    width: 100%;
+}
+
+.micro {
+        border: 2px solid #39974b;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .micro .servicio {
+        font-size: 25px;
+    }
+    .micro .patente {
+        color: #4b4b4b;
+        font-size: 15px;
+    }
+    .micro .llegada {
+        font-size: 20px;
+}

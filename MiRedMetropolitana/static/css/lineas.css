@@ -1,0 +1,18 @@
+
+.lineas {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.linea {
+    color: #39974b;
+    border: 2px solid #39974b;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: default;
+    border-radius: 10px;
+}
