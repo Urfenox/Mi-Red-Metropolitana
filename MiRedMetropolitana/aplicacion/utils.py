@@ -1,7 +1,4 @@
-# from secretos import *
-
-# TARJETA
-# RUT
+from .secretos import *
 
 def getMetroLines():
     return [
@@ -63,3 +60,10 @@ def getMicros():
             "distancia": "150 mts.",
         },
     ]
+
+def getTarjeta():
+    return {
+        "tipo": "Bip!",
+        "saldo": "3.000",
+        "numero": "123456789",
+    }

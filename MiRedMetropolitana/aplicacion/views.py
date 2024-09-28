@@ -10,11 +10,7 @@ def index(request):
         "index.html",
         {
             "informacion": {
-                "tarjeta": {
-                    "tipo": "Bip!",
-                    "saldo": "3.000",
-                    "numero": "123456789",
-                },
+                "tarjeta": getTarjeta(),
                 "lineas": getMetroLines(),
                 "micros": getMicros(),
             }
