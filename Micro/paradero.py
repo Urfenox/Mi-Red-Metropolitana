@@ -33,6 +33,8 @@ lejanas = soup.find_all("div", {"id": "proximo_solo_paradero"})
 micros = [] # todas las micros, ordenadas de menor a mayor distancia
 micros.extend(cercanas)
 micros.extend(lejanas)
+# elimina las micros que no nos importan
+micros = list(filter(lambda x : str(x.contents[1].get_text()).strip() in MICROS, micros))
 # ordena de menor a mayor distancia
 micros.sort(key=lambda x: int(str(x.contents[7].get_text()).strip().replace(" mts.", "")))
 
@@ -41,12 +43,11 @@ for micro in micros:
     patente = str(micro.contents[3].get_text()).strip()
     tiempo = str(micro.contents[5].get_text()).strip()
     distancia = str(micro.contents[7].get_text()).strip().replace(" mts.", "")
-    if servicio in MICROS:
-        print()
-        print("Servicio:", servicio)
-        print("Patente:", patente)
-        print("Tiempo:", tiempo)
-        print("Distancia:", distancia, "mts.")
-        time.sleep(.5)
+    print()
+    print("Servicio:", servicio)
+    print("Patente:", patente)
+    print("Tiempo:", tiempo)
+    print("Distancia:", distancia, "mts.")
+    time.sleep(.5)
 
 # print(micros)
