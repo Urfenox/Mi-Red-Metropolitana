@@ -11,7 +11,7 @@ def index(request):
         {
             "informacion": {
                 "tarjeta": getTarjeta(),
-                "lineas": getMetroLines(),
+                "lineas": getMetro(),
                 "micros": getMicros(),
             }
         }

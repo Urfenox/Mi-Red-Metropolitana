@@ -60,7 +60,7 @@ class Tarjeta():
         fecha = str(datos[7].get_text()).strip()
 
         return {
-            "tipo": "Bip!" if len(tipo) <= 2 else "TNE",
+            "tipo": "Bip!" if len(tipo) < 2 else "TNE",
             "saldo": saldo,
             "fecha": fecha,
             "numero": self.tarjeta,
@@ -138,11 +138,7 @@ class Transantiago():
             patente = str(micro.contents[3].get_text()).strip()
             tiempo = str(micro.contents[5].get_text()).strip()
             distancia = str(micro.contents[7].get_text()).strip().replace(" mts.", "")
-            print()
-            print("Servicio:", servicio)
-            print("Patente:", patente)
-            print("Tiempo:", tiempo)
-            print("Distancia:", distancia, "mts.")
+            if "Llegando." in tiempo: tiempo += ".."
             retorno.append({
                 "servicio": servicio,
                 "patente": patente,
@@ -150,7 +146,7 @@ class Transantiago():
                 "distancia": distancia,
             })
 
-        return retorno
+        return retorno[:3]
 
 # from secretos import *
 # tarjeta = Tarjeta(TARJETA, RUT)
