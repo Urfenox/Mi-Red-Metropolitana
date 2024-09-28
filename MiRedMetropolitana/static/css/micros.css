@@ -1,23 +1,36 @@
 
 .micros {
-    padding: 10px;
     width: 100%;
+    margin-bottom: 20px;
+    /* color: #810000; */
+    cursor: default;
 }
 
 .micro {
-        border: 2px solid #39974b;
+        opacity: var(--opacity);
+        border: 2px solid var(--micro);
         border-radius: 10px;
         padding: 10px;
         margin-bottom: 10px;
+        background-color: #343434;
     }
 
     .micro .servicio {
+        color: white;
+        display: flex;
+        align-items: center;
         font-size: 25px;
+        text-align: left;
     }
     .micro .patente {
-        color: #4b4b4b;
+        display: flex;
+        align-items: center;
+        color: #616161;
         font-size: 15px;
+        text-align: left;
     }
     .micro .llegada {
+        color: #dcdcdc;
         font-size: 20px;
+        text-align: right;
 }

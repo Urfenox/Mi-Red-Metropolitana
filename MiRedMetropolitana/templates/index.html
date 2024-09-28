@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <section class="container">
+    <section class="">
         <div class="tarjeta">
             <h5>Tarjeta {{ informacion.tipo }} {{ informacion.tarjeta }}</h5>
             <h1>$ {{ informacion.saldo }}</h1>
@@ -21,10 +21,10 @@
         </div>
         <div class="micros">
             {% for micro in informacion.micros %}
-            <div class="row micro">
-                <div class="col-auto servicio">{{ micro.servicio }}</div>
-                <div class="col-auto patente">{{ micro.patente }}</div>
-                <div class="col-auto llegada">{{ micro.llegada }}</div>
+            <div class="row micro" style="--micro: {% if forloop.counter0 == 0 %}#39974b{% elif forloop.last %}#6f000082{% else %}#485100{% endif %};--opacity: {% if forloop.counter0 == 0 %}1{% elif forloop.last %}0.6{% else %}0.8{% endif %};">
+                <div class="col-md-4 servicio">{{ micro.servicio }}</div>
+                <div class="col-md-4 patente">{{ micro.patente }}</div>
+                <div class="col-md-4 llegada">{{ micro.llegada }}</div>
             </div>
             {% endfor %}
         </div>
