@@ -1,7 +1,6 @@
 import json
 import requests # pip install request
 from bs4 import BeautifulSoup # pip install BeautifulSoup4
-from datetime import datetime
 
 
 class Tarjeta():
@@ -11,15 +10,12 @@ class Tarjeta():
     def __init__(self, tarjeta, rut):
         self.tarjeta = tarjeta
         self.rut = rut
-        self.tiempo = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     
     session = requests.Session()
-    tiempo = ""
     tarjeta = ""
     rut = "0"
 
     def obtenerInformacion(self):
-        print(self.tiempo)
         PAYLOAD_SESION = {
             "accion": "6",
             "NumDistribuidor": "99",
@@ -104,15 +100,12 @@ class Transantiago():
     def __init__(self, paradero, micros):
         self.paradero = paradero
         self.micros = micros
-        self.tiempo = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     
     sesion = requests.Session()
-    tiempo = ""
     paradero = ""
     micros = "0"
 
     def obtenerMicros(self):
-        print(self.tiempo)
         # CREAR SESION
         headers = {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
