@@ -1,6 +1,7 @@
 import json
 import requests # pip install request
 from bs4 import BeautifulSoup # pip install BeautifulSoup4
+from datetime import datetime
 
 
 class Tarjeta():
@@ -10,11 +11,15 @@ class Tarjeta():
     def __init__(self, tarjeta, rut):
         self.tarjeta = tarjeta
         self.rut = rut
+        self.tiempo = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     
+    session = requests.Session()
+    tiempo = ""
     tarjeta = ""
     rut = "0"
 
     def obtenerInformacion(self):
+        print(self.tiempo)
         PAYLOAD_SESION = {
             "accion": "6",
             "NumDistribuidor": "99",
@@ -31,8 +36,7 @@ class Tarjeta():
             "Content-Type": "application/x-www-form-urlencoded",
         }
         # INICIA SESION
-        session = requests.Session()
-        peticion = session.post(self.API, headers=headers, data=PAYLOAD_SESION)
+        peticion = self.session.post(self.API, headers=headers, data=PAYLOAD_SESION)
         html = peticion.text
 
         soup = BeautifulSoup(html, "html.parser")
@@ -48,7 +52,7 @@ class Tarjeta():
             "DiasMov": "90",
             "FechaInicioMovimientos": ""
         }
-        peticion = session.post(self.API, headers=headers, data=PAYLOAD_SALDO)
+        peticion = self.session.post(self.API, headers=headers, data=PAYLOAD_SALDO)
         html = peticion.text
 
         # TOMA LOS DATOS
@@ -98,24 +102,27 @@ class Transantiago():
     API = "http://web.smsbus.cl/web/buscarAction.do"
 
     def __init__(self, paradero, micros):
-            self.paradero = paradero
-            self.micros = micros
+        self.paradero = paradero
+        self.micros = micros
+        self.tiempo = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     
+    sesion = requests.Session()
+    tiempo = ""
     paradero = ""
     micros = "0"
 
     def obtenerMicros(self):
+        print(self.tiempo)
         # CREAR SESION
-        sesion = requests.Session()
         headers = {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
             "Content-Type": "application/x-www-form-urlencoded",
         }
-        peticion = sesion.get(self.API+"?d=cargarServicios")
+        peticion = self.sesion.get(self.API+"?d=cargarServicios")
         html = peticion.text
 
         # GENERA LA PETICION PARA VER LAS MICROS CERCANAS
-        peticion = sesion.get(self.API+f"?d=busquedaParadero&ingresar_paradero={self.paradero}", headers=headers)
+        peticion = self.sesion.get(self.API+f"?d=busquedaParadero&ingresar_paradero={self.paradero}", headers=headers)
         html = peticion.text
 
         # COCINA LA SOPA
