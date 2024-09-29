@@ -6,16 +6,16 @@ from bs4 import BeautifulSoup # pip install BeautifulSoup4
 class Tarjeta():
 
     API = "http://pocae.tstgo.cl/PortalCAE-WAR-MODULE/SesionPortalServlet"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0',
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+    session = requests.Session()
+    sessionInfo = None
 
     def __init__(self, tarjeta, rut):
         self.tarjeta = tarjeta
         self.rut = rut
-    
-    session = requests.Session()
-    tarjeta = ""
-    rut = "0"
-
-    def obtenerInformacion(self):
         PAYLOAD_SESION = {
             "accion": "6",
             "NumDistribuidor": "99",
@@ -27,28 +27,29 @@ class Tarjeta():
             "NumTarjeta": self.tarjeta,
             "bloqueable": "0"
         }
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0',
-            "Content-Type": "application/x-www-form-urlencoded",
-        }
         # INICIA SESION
-        peticion = self.session.post(self.API, headers=headers, data=PAYLOAD_SESION)
+        peticion = self.session.post(self.API, headers=self.headers, data=PAYLOAD_SESION)
         html = peticion.text
 
         soup = BeautifulSoup(html, "html.parser")
         myFORM = soup.find("form", {"id": "formMenuPrincipal"})
+        self.sessionInfo = myFORM
+    
+    tarjeta = ""
+    rut = "0"
 
+    def obtenerInformacion(self):
         # REALIZA LA SOLICITUD DE SALDO
         PAYLOAD_SALDO = {
-            "KSI": myFORM.contents[1].get('value'),
+            "KSI": self.sessionInfo.contents[1].get('value'),
             "accion": "6",
             "itemms": "1000",
             "item": "1",
-            "fechalogeo": myFORM.contents[9].get('value'),
+            "fechalogeo": self.sessionInfo.contents[9].get('value'),
             "DiasMov": "90",
             "FechaInicioMovimientos": ""
         }
-        peticion = self.session.post(self.API, headers=headers, data=PAYLOAD_SALDO)
+        peticion = self.session.post(self.API, headers=self.headers, data=PAYLOAD_SALDO)
         html = peticion.text
 
         # TOMA LOS DATOS
@@ -96,26 +97,25 @@ class Metro():
 class Transantiago():
 
     API = "http://web.smsbus.cl/web/buscarAction.do"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+    sesion = requests.Session()
 
     def __init__(self, paradero, micros):
         self.paradero = paradero
         self.micros = micros
+        # CREAR SESION
+        peticion = self.sesion.get(self.API+"?d=cargarServicios")
+        html = peticion.text
     
-    sesion = requests.Session()
     paradero = ""
     micros = "0"
 
     def obtenerMicros(self):
-        # CREAR SESION
-        headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
-            "Content-Type": "application/x-www-form-urlencoded",
-        }
-        peticion = self.sesion.get(self.API+"?d=cargarServicios")
-        html = peticion.text
-
         # GENERA LA PETICION PARA VER LAS MICROS CERCANAS
-        peticion = self.sesion.get(self.API+f"?d=busquedaParadero&ingresar_paradero={self.paradero}", headers=headers)
+        peticion = self.sesion.get(self.API+f"?d=busquedaParadero&ingresar_paradero={self.paradero}", headers=self.headers)
         html = peticion.text
 
         # COCINA LA SOPA
