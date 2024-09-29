@@ -147,18 +147,3 @@ class Transantiago():
             })
 
         return retorno[:3]
-
-# from secretos import *
-# tarjeta = Tarjeta(TARJETA, RUT)
-# metro = Metro()
-# micro = Transantiago(PARADERO, MICROS)
-
-# bip = tarjeta.obtenerInformacion()
-# lineas = metro.obtenerEstados()
-# micros = micro.obtenerMicros()
-
-# print(bip)
-# print(lineas)
-# print(micros)
-
-# input()
