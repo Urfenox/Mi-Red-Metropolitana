@@ -9,10 +9,35 @@ def index(request):
         request,
         "index.html",
         {
-            "informacion": {
-                "tarjeta": getTarjeta(),
-                "lineas": getMetro(),
-                "micros": getMicros(),
-            }
+            "tarjeta": getTarjeta(),
+            "lineas": getMetro(),
+            "micros": getMicros(),
+        }
+    )
+
+def bip(request):
+    return render(
+        request,
+        "servicios/bip.html",
+        {
+            "tarjeta": getTarjeta()
+        }
+    )
+
+def metro(request):
+    return render(
+        request,
+        "servicios/metro.html",
+        {
+            "lineas": getMetro(),
+        }
+    )
+
+def micro(request):
+    return render(
+        request,
+        "servicios/micro.html",
+        {
+            "micros": getMicros(),
         }
     )

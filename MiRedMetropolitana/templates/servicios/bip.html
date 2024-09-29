@@ -1,0 +1,9 @@
+<div
+  class="tarjeta"
+  hx-get="{% url 'aplicacion:bip' %}"
+  hx-trigger="every 10m"
+  hx-swap="outerHTML"
+>
+  <h5>Tarjeta {{ tarjeta.tipo }} {{ tarjeta.numero }}</h5>
+  <h1>$ {{ tarjeta.saldo }}</h1>
+</div>

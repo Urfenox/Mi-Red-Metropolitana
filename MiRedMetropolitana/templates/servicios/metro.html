@@ -1,0 +1,14 @@
+<div
+  class="lineas"
+  hx-get="{% url 'aplicacion:metro' %}"
+  hx-trigger="every 2m"
+  hx-swap="outerHTML"
+>
+  {% for linea in lineas %}
+  <div>
+    <h2 class="linea" style="--linea: {{ linea.color }};">
+      {{ linea.nombre|upper }}
+    </h2>
+  </div>
+  {% endfor %}
+</div>
