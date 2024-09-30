@@ -6,6 +6,10 @@
     cursor: default;
 }
 
+.paradero {
+    color: rgb(120, 120, 120);
+}
+
 .micro {
         opacity: var(--opacity);
         border: 2px solid var(--micro);

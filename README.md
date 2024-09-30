@@ -47,3 +47,9 @@ Usa Django (con planes de pasarlo a Flask).
     `py manage.py runserver`  
 
 Una vez realizados los pasos, podrás ver el sitio dirigiéndote a http://localhost:8000/.  
+
+# TODO
+
+ - Aceptar Bip!QR
+ - Notificacion mediante Pushover sobre saldo bajo.
+ - Permitir varios paraderos ?

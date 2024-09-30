@@ -4,7 +4,7 @@
   hx-trigger="every 1m"
   hx-swap="outerHTML"
 >
-  {% for micro in micros %}
+  {% for micro in micros.micros %}
   <div
     class="row micro"
     style="--micro: {% if forloop.counter0 == 0 %}#39974b{% elif forloop.counter0 == 1 %}#7F7F7F{% else %}#4C4C4C{% endif %};--opacity: {% if forloop.counter0 == 0 %}1{% elif forloop.last %}0.6{% else %}0.8{% endif %};"
@@ -16,4 +16,5 @@
     <div class="col-md-4 llegada">{{ micro.llegada }}</div>
   </div>
   {% endfor %}
+  <span class="paradero">{{ micros.paradero }}</span>
 </div>

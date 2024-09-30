@@ -121,6 +121,7 @@ class Transantiago():
         # COCINA LA SOPA
         soup = BeautifulSoup(html, "html.parser")
         # OBTIENE LOS DATOS IMPORTANTES
+        paradero = str(soup.find("div", {"id": "nombre_paradero_respuesta"}).get_text()).strip().replace("Paradero: ", "")
         cercanas = soup.find_all("div", {"id": "siguiente_respuesta"})
         lejanas = soup.find_all("div", {"id": "proximo_solo_paradero"})
 
@@ -146,4 +147,7 @@ class Transantiago():
                 "distancia": distancia,
             })
 
-        return retorno[:3]
+        return {
+            "paradero": self.paradero + " " + paradero,
+            "micros": retorno[:3],
+        }
