@@ -53,3 +53,7 @@ Una vez realizados los pasos, podrás ver el sitio dirigiéndote a http://localh
  - Aceptar Bip!QR
  - Notificacion mediante Pushover sobre saldo bajo.
  - Permitir varios paraderos ?
+
+> Para mí el proyecto está listo, está en la cúspide de perfección. No hay nada que pueda mejorarlo, menos un ser mortal.  
+
+![Works on my Machine](https://dev.crizacio.com/ZZaci0/assets/images/works-on-my-machine.png)

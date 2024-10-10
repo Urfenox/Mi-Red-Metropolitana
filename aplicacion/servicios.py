@@ -134,7 +134,7 @@ class Transantiago():
         micros.sort(key=lambda x: int(str(x.contents[7].get_text()).strip().replace(" mts.", "")))
 
         retorno = []
-        for micro in micros:
+        for micro in micros[:3]:
             servicio = str(micro.contents[1].get_text()).strip()
             patente = str(micro.contents[3].get_text()).strip()
             tiempo = str(micro.contents[5].get_text()).strip()
@@ -149,5 +149,5 @@ class Transantiago():
 
         return {
             "paradero": self.paradero + " " + paradero,
-            "micros": retorno[:3],
+            "micros": retorno,
         }
